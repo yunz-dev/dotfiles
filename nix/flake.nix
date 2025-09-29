@@ -71,6 +71,7 @@
         pkgs.mysql84
         # terminals
         pkgs.tldr
+
         # pkgs.docker
         pkgs.docker
         pkgs.colima
