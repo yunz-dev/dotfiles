@@ -3,211 +3,256 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05/";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
-  outputs =
-    inputs@{
-      self,
-      nix-darwin,
-      nixpkgs,
-      nix-homebrew,
-    }:
-    let
-      configuration =
-        { pkgs, config, ... }:
-        {
-          nixpkgs.config.allowUnfree = true;
+  outputs = inputs @ {
+    self,
+    nix-darwin,
+    nixpkgs,
+    nix-homebrew,
+  }: let
+    configuration = {
+      pkgs,
+      config,
+      ...
+    }: {
+      nixpkgs.config.allowUnfree = true;
 
-          # List packages installed in system profile. To search by name, run:
-          # $ nix-env -qaP | grep wget
-          environment.systemPackages = [
-            # illegal but i want windsurf to work
-            # pkgs.nodejs
+      # List packages installed in system profile. To search by name, run:
+      # $ nix-env -qaP | grep wget
+      environment.systemPackages = [
+        # illegal but i want windsurf to work
+        # pkgs.nodejs
+        pkgs.helix
+        pkgs.lazysql
+        pkgs.utm
+        pkgs.zellij
+        pkgs.nix
 
-            pkgs.go
-            pkgs.php
-            pkgs.cargo
-            pkgs.lua
+        # LSPS
+        # pkgs.python-lsp-server
 
-            pkgs.ruby
-            pkgs.opam
-            pkgs.ocaml
-            pkgs.erlang
-            pkgs.rebar3
+        pkgs.go
+        pkgs.tailscale
+        pkgs.gleam
+        pkgs.scala
+        pkgs.php
+        pkgs.cargo
+        pkgs.lua
+        pkgs.rust-analyzer
+        pkgs.rustup
+        pkgs.just
 
+        pkgs.ruby
+        pkgs.opam
+        pkgs.ocaml
+        pkgs.erlang
+        pkgs.rebar3
 
-            pkgs.ripgrep
-            pkgs.stow
-            pkgs.deno
-            pkgs.maven
-            pkgs.ffmpeg
-            pkgs.supabase-cli
-            pkgs.postgresql
-            pkgs.dbeaver-bin
-            pkgs.wireshark
-            pkgs.act
-            pkgs.jetbrains.idea-ultimate
-            pkgs.syncthing
-            pkgs.prometheus
-            pkgs.wget
-            # pkgs.go
-            pkgs.qbittorrent
-            pkgs.mysql84
-            # terminals
-            pkgs.tldr
-            # pkgs.docker
-            pkgs.lazydocker
-            pkgs.vscode
-            pkgs.gnupg
-            pkgs.mkalias
-            pkgs.tmux
-            pkgs.alacritty
-            pkgs.kitty
-            pkgs.obsidian
-            pkgs.fastfetch
-            pkgs.neofetch
-            pkgs.vesktop
-            pkgs.raycast
-            pkgs.cowsay
-            pkgs.bat
-            pkgs.eza
-            pkgs.starship
-            pkgs.fzf
-            pkgs.fd
-            pkgs.thefuck
-            pkgs.zoxide
-            pkgs.yazi
-            pkgs.delta
-            pkgs.tree
-            pkgs.delta
-            pkgs.lazygit
-            pkgs.bottom
-            pkgs.ripgrep
-            pkgs.direnv
-            pkgs.git
-            pkgs.arc-browser
-            pkgs.sketchybar
-            pkgs.btop
-            pkgs.hugo
-            pkgs.sketchybar
-            pkgs.lua
-            pkgs.home-manager
+        pkgs.ripgrep
+        pkgs.stow
+        pkgs.deno
+        pkgs.maven
+        pkgs.ffmpeg
+        pkgs.postgresql
+        pkgs.dbeaver-bin
+        pkgs.wireshark
+        pkgs.act
+        pkgs.jetbrains.idea-ultimate
+        pkgs.syncthing
+        pkgs.prometheus
+        pkgs.wget
+        # pkgs.go
+        pkgs.qbittorrent
+        pkgs.mysql84
+        # terminals
+        pkgs.tldr
+        # pkgs.docker
+        pkgs.docker
+        pkgs.colima
+        pkgs.lazydocker
+        pkgs.vscode
+        pkgs.gnupg
+        pkgs.mkalias
+        pkgs.tmux
+        pkgs.alejandra
+        pkgs.ruff
+        pkgs.alacritty
+        pkgs.kitty
+        pkgs.ghostty-bin
+        pkgs.wezterm
+        pkgs.obsidian
+        pkgs.fastfetch
+        pkgs.neofetch
+        pkgs.vesktop
+        pkgs.raycast
+        pkgs.cowsay
+        pkgs.bat
+        pkgs.eza
+        pkgs.starship
+        pkgs.fzf
+        pkgs.fd
+        # pkgs.thefuck
+        pkgs.zoxide
+        pkgs.yazi
+        pkgs.delta
+        pkgs.tree
+        pkgs.delta
+        pkgs.lazygit
+        pkgs.bottom
+        pkgs.ripgrep
+        pkgs.direnv
+        pkgs.git
+        # pkgs.arc-browser
+        pkgs.sketchybar
+        pkgs.btop
+        pkgs.hugo
+        pkgs.sketchybar
+        pkgs.lua
+        pkgs.home-manager
+        pkgs.headscale
+      ];
 
-          ];
-
-          homebrew = {
-            enable = true;
-            brews = [
-              #"mas"
-              "julia"
-              "neovim"
-              "node"
-              "mysql"
-              "vifm"
-              "cloudflared"
-              "mpv"
-              "uv"
-              "r"
-              "gettext"
-            ];
-            casks = [
-              "vlc"
-              "dotnet-sdk"
-              "rider"
-              "docker"
-              "firefox"
-              "nikitabobko/tap/aerospace"
-              "karabiner-elements"
-              "capcut"
-              "scroll-reverser"
-              "jitouch"
-              "google-chrome"
-              "mongodb-compass"
-            ];
-            # app store
-            masApps = {
-              #"Yoink" = 457622435;
-            };
-            onActivation.cleanup = "zap";
-          };
-
-          fonts.packages = [
-            (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-          ];
-
-          system.activationScripts.applications.text =
-            let
-              env = pkgs.buildEnv {
-                name = "system-applications";
-                paths = config.environment.systemPackages;
-                pathsToLink = "/Applications";
-              };
-            in
-            pkgs.lib.mkForce ''
-              # Set up applications.
-              echo "setting up /Applications..." >&2
-              rm -rf /Applications/Nix\ Apps
-              mkdir -p /Applications/Nix\ Apps
-              find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-              while read -r src; do
-                app_name=$(basename "$src")
-                echo "copying $src" >&2
-                ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-              done
-            '';
-
-          system.defaults = {
-            dock.autohide = true;
-            finder.FXPreferredViewStyle = "clmv";
-            loginwindow.GuestEnabled = false;
-            NSGlobalDomain.AppleInterfaceStyle = "Dark";
-            NSGlobalDomain.KeyRepeat = 2;
-            dock.expose-group-by-app = true;
-          };
-
-          # Auto upgrade nix package and the daemon service.
-          services.nix-daemon.enable = true;
-          # nix.package = pkgs.nix;
-
-          # Necessary for using flakes on this system.
-          nix.settings.experimental-features = "nix-command flakes";
-
-          # Enable alternative shell support in nix-darwin.
-          # programs.fish.enable = true;
-
-          # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.rev or self.dirtyRev or null;
-
-          # Used for backwards compatibility, please read the changelog before changing.
-          # $ darwin-rebuild changelog
-          system.stateVersion = 5;
-
-          # The platform the configuration will be used on.
-          nixpkgs.hostPlatform = "aarch64-darwin";
-        };
-    in
-    {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#simple
-      darwinConfigurations."pro" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              #enable = true;
-              enableRosetta = true;
-              # for apple silicon use rosetta
-              user = "yunz";
-            };
-          }
+      homebrew = {
+        enable = true;
+        brews = [
+          #"mas"
+          "bash-completion"
+          "python-lsp-server"
+          "julia"
+          "neovim"
+          "node"
+          "mysql"
+          "cloudflared"
+          "mpv"
+          "uv"
+          "r"
+          "gettext"
+          "codecrafters-io/tap/codecrafters"
+          "narugit/tap/smctemp"
+          "FelixKratz/formulae/svim"
+          "FelixKratz/formulae/borders"
+          "FelixKratz/formulae/sketchybar"
         ];
+        casks = [
+          "vlc"
+          "dotnet-sdk"
+          "rider"
+          "firefox"
+          "nikitabobko/tap/aerospace"
+          "karabiner-elements"
+          "capcut"
+          "scroll-reverser"
+          "jitouch"
+          "google-chrome"
+          "mongodb-compass"
+        ];
+        # taps = [
+        #   "homebrew/services"
+        # ];
+        # services = [
+        #   "sketchybar"
+        # ];
+        # app store
+        masApps = {
+          #"Yoink" = 457622435;
+        };
+        # onActivation.cleanup = "zap";
       };
 
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."pro".pkgs;
+      # fonts.packages = [
+      #   (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Hack"]; })
+      # ];
+
+      fonts.packages = [
+        pkgs.nerd-fonts.jetbrains-mono
+        pkgs.nerd-fonts.hack
+      ];
+
+      system.activationScripts.applications.text = let
+        env = pkgs.buildEnv {
+          name = "system-applications";
+          paths = config.environment.systemPackages;
+          pathsToLink = "/Applications";
+        };
+      in
+        pkgs.lib.mkForce ''
+          # Set up applications.
+          echo "setting up /Applications..." >&2
+          rm -rf /Applications/Nix\ Apps
+          mkdir -p /Applications/Nix\ Apps
+          find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+          while read -r src; do
+            app_name=$(basename "$src")
+            echo "copying $src" >&2
+            ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+          done
+        '';
+
+      system.primaryUser = "yunz";
+      system.defaults = {
+        dock.autohide = true;
+        finder.FXPreferredViewStyle = "clmv";
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain.KeyRepeat = 2;
+        NSGlobalDomain._HIHideMenuBar = true;
+        # dock.expose-group-by-app = true; -- depcreated
+        dock.expose-group-apps = true; #-- new
+      };
+
+      # Auto upgrade nix package and the daemon service. -- depecreated?!
+      # services.nix-daemon.enable = true;
+      # nix.package = pkgs.nix;
+
+      # Necessary for using flakes on this system.
+      nix.settings.experimental-features = "nix-command flakes";
+
+      # Enable alternative shell support in nix-darwin.
+      # programs.fish.enable = true;
+      # programs.tmux = {
+      #   enable = true;
+      #   extraConfig = ''
+      #     # Load plugins by running their initialization scripts
+      #     run-shell ${pkgs.tmuxPlugins.sensible}/share/tmux-plugins/sensible/sensible.tmux
+      #     run-shell ${pkgs.tmuxPlugins.yank}/share/tmux-plugins/yank/yank.tmux
+      #     run-shell ${pkgs.tmuxPlugins.vim-tmux-navigator}/share/tmux-plugins/vim-tmux-navigator/vim-tmux-navigator.tmux
+      #   '';
+      # };
+
+      # Set Git commit hash for darwin-version.
+      system.configurationRevision = self.rev or self.dirtyRev or null;
+
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
+      system.stateVersion = 5;
+
+      # The platform the configuration will be used on.
+      nixpkgs.hostPlatform = "aarch64-darwin";
     };
+  in {
+    # Build darwin flake using:
+    # $ darwin-rebuild build --flake .#simple
+    darwinConfigurations."pro" = nix-darwin.lib.darwinSystem {
+      modules = [
+        configuration
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            #enable = true;
+            enableRosetta = true;
+            # for apple silicon use rosetta
+            user = "yunz";
+          };
+        }
+      ];
+    };
+
+    # Expose the package set, including overlays, for convenience.
+    darwinPackages = self.darwinConfigurations."pro".pkgs;
+  };
 }
