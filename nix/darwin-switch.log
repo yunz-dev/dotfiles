@@ -1,0 +1,64 @@
+building the system configuration...
+setting up groups...
+setting up users...
+setting up /Applications...
+copying /nix/store/yakmm5bg6ya1ayd8j67q2rhnkkai3kgf-wezterm-0-unstable-2025-08-14/Applications/WezTerm.app
+copying /nix/store/rzgzlmfcnxcwhplr5r2kdw6sp18nc57x-vscode-1.104.1/Applications/Visual Studio Code.app
+copying /nix/store/axdp01gbs0j7bl1y2bxwk1b8g601k2ar-vesktop-1.5.8/Applications/Vesktop.app
+copying /nix/store/vy7vchi62s6d162qdn6b543dwb6znacz-qbittorrent-5.1.2/Applications/qbittorrent.app
+copying /nix/store/wvw98rvxfs471idkj5d0svqbpv5j58wx-raycast-1.103.2/Applications/Raycast.app
+copying /nix/store/11mipknipby5slvp01is29nndyk1g9jh-dbeaver-bin-25.2.0/Applications/dbeaver.app
+copying /nix/store/lx2qf98nd8a28c0fab4zik1yxkkw04mp-obsidian-1.9.12/Applications/Obsidian.app
+copying /nix/store/gbhzvimvnb0i3mxqfmn3i35h9bg4ljki-utm-4.7.4/Applications/UTM.app
+copying /nix/store/cc527gz43lyln9h4v8ffi18g8518h8d7-idea-ultimate-2025.2.2/Applications/IntelliJ IDEA.app
+copying /nix/store/7f4751nd4aiywzd838kbcpnhyzax6w7y-wireshark-qt-4.4.9/Applications/Wireshark.app
+copying /nix/store/2j3fp70magmwbrfzvmqkf3wlb2b4lr2p-ghostty-bin-1.2.0/Applications/Ghostty.app
+copying /nix/store/z9ip2rijsli3lrspb66v5lhvk50057ix-kitty-0.42.2/Applications/kitty.app
+copying /nix/store/ls93jdfyqmc67z4bmhl3w646km2by2wl-alacritty-0.15.1/Applications/Alacritty.app
+setting up pam...
+applying patches...
+setting up /etc...
+system defaults...
+user defaults...
+restarting Dock...
+setting up launchd services...
+reloading nix-daemon...
+waiting for nix-daemon
+waiting for nix-daemon
+configuring networking...
+configuring application firewall...
+configuring power...
+setting up /Library/Fonts/Nix Fonts...
+setting nvram variables...
+Homebrew bundle...
+Using bash-completion
+Using python-lsp-server
+Using julia
+Using neovim
+Using node
+Using mysql
+Using cloudflared
+Using mpv
+Using uv
+Using r
+Using gettext
+Using codecrafters-io/tap/codecrafters
+Using narugit/tap/smctemp
+Using felixkratz/formulae/svim
+Using felixkratz/formulae/borders
+Using felixkratz/formulae/sketchybar
+Using vlc
+Using dotnet-sdk
+Using rider
+Using firefox
+Using aerospace
+Using karabiner-elements
+Using capcut
+Using scroll-reverser
+Using jitouch
+Using google-chrome
+Using mongodb-compass
+Warning: Could not write to /nix/store/0nh06918kp9hbarsnv4wk0ifpkd2jdgy-Brewfile.lock.json!
+Hide this warning by setting HOMEBREW_BUNDLE_NO_LOCKFILE_WRITE_WARNING.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+Homebrew Bundle complete! 27 Brewfile dependencies now installed.

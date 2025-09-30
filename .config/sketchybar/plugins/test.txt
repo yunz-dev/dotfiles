@@ -1,0 +1,77 @@
+PMU tdie12: 38.1
+PMU tdev7: -9199.4
+PMU tdie5: 38.6
+PMU tdie4: 38.2
+PMU tdie1: 38.9
+PMU tdie3: 38.8
+PMU tdev5: -9201.1
+PMU tdev1: -9199.4
+PMU tdie12: 38.5
+PMU tdie1: 38.6
+PMU tdie8: 39.7
+PMU tdie14: 38.3
+PMU tdev6: -9199.4
+PMU tdie7: 39.3
+PMU tdev2: -9201.1
+gas gauge battery: 33.0
+PMU tdie3: 39.2
+PMU tdie5: 38.8
+gas gauge battery: 33.0
+PMU tdie14: 38.2
+PMU tdev2: -9201.1
+PMU tdev8: -9199.4
+PMU tdie9: 38.2
+PMU tdev4: -9201.1
+PMU tdie10: 38.4
+PMU tdie7: 39.5
+PMU tdev2: -9199.4
+PMU tdie6: 39.0
+PMU tdie1: 38.4
+noname: 0.0
+PMU tdev4: -9199.4
+PMU tdie2: 38.4
+PMU tdie11: 38.4
+PMU tdie5: 38.3
+PMU tdie9: 38.4
+gas gauge battery: 33.5
+PMU tdie9: 38.0
+PMU tdev6: -9199.4
+PMU tdie13: 38.4
+PMU tdie11: 38.1
+PMU tdie11: 38.0
+PMU tcal: 51.8
+PMU tdev6: -9201.1
+PMU tdev8: -9201.1
+PMU tdie3: 38.2
+PMU tdev4: -9199.4
+PMU tcal: 51.8
+PMU tcal: 51.8
+PMU tdie13: 38.4
+PMU tdev5: -9199.4
+PMU tdie6: 39.3
+PMU tdev1: -9201.1
+gas gauge battery: 33.5
+PMU tdie2: 37.8
+PMU tdie4: 38.3
+PMU tdev1: -9201.1
+PMU tdev7: -9199.4
+PMU tdie8: 39.1
+PMU tdev3: -9199.4
+PMU tdie4: 38.3
+PMU tdie6: 39.1
+PMU tdev8: -9201.1
+PMU tdev3: -9201.1
+NAND CH0 temp: 35.0
+PMU tdie10: 38.6
+PMU tdie8: 39.2
+PMU tdev3: -9201.1
+gas gauge battery: 33.0
+gas gauge battery: 33.5
+PMU tdev5: -9202.9
+PMU tdie12: 38.8
+PMU tdie7: 39.2
+PMU tdie10: 38.5
+PMU tdev7: -9201.1
+PMU tdie13: 38.2
+PMU tdie2: 37.7
+PMU tdie14: 38.1
