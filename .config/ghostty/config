@@ -1,5 +1,5 @@
 
-custom-shader = shaders/cursor_smear.glsl
+custom-shader = shaders/main.glsl
 font-size = 16
 macos-titlebar-style = hidden
 

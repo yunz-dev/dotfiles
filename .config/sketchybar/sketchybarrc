@@ -38,8 +38,8 @@ sketchybar --add item logo left \
            --set logo icon=\
                  icon.font="$([ "$MODE" = "compact" ] && echo "Hack Nerd Font:Bold:14.0" || echo "Hack Nerd Font:Bold:19.0")" \
                  icon.color=0xff010101 \
-                 icon.padding_left=16 \
-                 icon.padding_right=16 \
+                 icon.padding_left=12 \
+                 icon.padding_right=12 \
                  background.color=0xff89b4fa \
                  background.padding_right="$([ "$MODE" = "compact" ] && echo 0 || echo 8)" \
                  background.padding_left="$([ "$MODE" = "compact" ] && echo 0 || echo 4)" \
@@ -49,6 +49,17 @@ sketchybar --add event aerospace_workspace_change
 sketchybar --add event aerospace_monitor_change
 
 for sid in $(aerospace list-workspaces --all); do
+      case "$sid" in
+        B) icon="" ;;
+        T) icon="" ;;
+        D) icon="" ;;
+        S) icon="" ;;
+        W) icon="󰖟" ;;
+        M) icon="" ;;
+        N) icon="";;
+        *) icon="$sid" ;;  # Default to workspace name
+    esac
+
     sketchybar --add item space.$sid left \
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
@@ -57,10 +68,11 @@ for sid in $(aerospace list-workspaces --all); do
           echo "${v:-1}"
         )" \
         drawing=off \
-        icon="$sid" \
+        icon.font="$([ "$MODE" = "compact" ] && echo "Hack Nerd Font:Bold:14.0" || echo "Hack Nerd Font:Bold:18.0")" \
+        icon="$icon" \
         icon.highlight_color=0xffE48FA8 \
-        icon.padding_left=20 \
-        icon.padding_right=20 \
+        icon.padding_left=16 \
+        icon.padding_right=16 \
         background.color=0xff3C3E4F \
         background.padding_left=-4 \
         background.padding_right=-4 \
